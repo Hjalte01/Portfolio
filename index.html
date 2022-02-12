@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<!-- Titel, samt icon billede -->
+		<link rel="icon" href="Img/Billede.JPG" type="image/icon" />
+		<title>Hjaltes Profile</title>
+
+		<!-- CSS og js linket op -->
+		<script src="profile.js" defer></script>
+		<link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+	</head>
+
+	<body>
+		<input type="checkbox" id="box1" class="box" />
+		<label id="menu" for="box1" tabindex="0">
+			<!--Only javascript currently and is needed when you using tab and need to press enter to check menu button-->
+			<div id="hamburgerLook"></div>
+		</label>
+		<div id="menu-content">
+			<p id="menuTitel">Menu</p>
+			<div id="menu-grid">
+				<a href="#forside" tabindex="0">
+					<div class="menu-items">
+						Front page
+						<div class="arrow">
+							<div class="arrow-head"></div>
+							<div class="arrow-back"></div>
+						</div>
+					</div>
+				</a>
+				<a href="#about-me" tabindex="0">
+					<div class="menu-items">
+						About me
+						<div class="arrow">
+							<div class="arrow-head"></div>
+							<div class="arrow-back"></div>
+						</div>
+					</div>
+				</a>
+				<a href="#projektLabel" tabindex="0">
+					<div class="menu-items">
+						Projects I've made
+						<div class="arrow">
+							<div class="arrow-head"></div>
+							<div class="arrow-back"></div>
+						</div>
+					</div>
+				</a>
+				<a href="#contact-information" tabindex="0">
+					<div class="menu-items">
+						Contact informations
+						<div class="arrow">
+							<div class="arrow-head"></div>
+							<div class="arrow-back"></div>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+
+		<div id="forside">
+			<div id="forsideImg" alt="Forside Img"></div>
+			<h1>Hjalte Bjørnstrup</h1>
+		</div>
+
+		<div id="container">
+			<div id="profileContainer">
+				<div class="profileChild profile" id="about-me"></div>
+				<div class="profileChild informationer">
+					<div class="titel">
+						<h2>About me</h2>
+					</div>
+					<div class="description">
+						<p>
+							I'm 20 years old and I like to code. I code primarily in HTML5, CSS3 and Javascript, where I do frontend and backend. In recent projects I have primarily been frontend oriented, because I was very backend oriented in gymnasium and I would like to try it all out before I
+							choose my path in the world of programming.
+						</p>
+					</div>
+				</div>
+			</div>
+			<!-- <div id="projekterTitelContainer"> -->
+			<label id="projektLabel" for="#projekter">Projects I've made</label>
+			<input type="checkbox" id="box2" class="box" />
+			<label for="box2" id="filter" tabindex="0" ;></label>
+			<div id="filterContainer">
+				<h2>Filter for libraries and languages</h2>
+				<div id="selection">
+					<p tabindex="0">CSS3</p>
+					<p tabindex="0">HTML5</p>
+					<p tabindex="0">Javascript</p>
+					<p tabindex="0">P5.js<span class="tooltiptext">This is a javascript library, that makes canvas a lot easiere to work with. A P5 project, barely need any HTML and CSS, thereby is a good starter tool for learning javascript.</span></p>
+				</div>
+				<section>
+					<p>Included</p>
+					<p>Excluded</p>
+					<input id="or" type="radio" name="orAnd" value="or" checked="checked" tabindex="0" />
+					<label for="or">Or</label>
+					<input id="and" type="radio" name="orAnd" value="and" tabindex="0" />
+					<label for="and">And </label>
+				</section>
+			</div>
+			<!-- </div> -->
+			<div id="projekter">
+				<div class="projekterne navigationssystem">
+					<div class="projekterLinks">
+						<div>
+							<a href="index.html" tabindex="0">Read more</a>
+							<a href="https://sukkermap.netlify.app" target="_blank" tabindex="0">Go to website</a>
+						</div>
+					</div>
+					<h2 class="gridLeft">Sukkermap - a navigation system</h2>
+					<div class="gridRight">
+						<p>This project made it possible to navigate between nearly every area and classroom at, Htx Sukkertoppen gymnasium. It was mainly a backend project, where A* search algorithm was used and the project was build up from canvas in P5.js.</p>
+						<p>CSS3 / HTML5 / Javascript / P5.js</p>
+					</div>
+				</div>
+				<div class="projekterne næsteProject">
+					<h2 class="gridLeft">Upcoming project</h2>
+					<div class="gridRight">
+						<p>????</p>
+						<p>? / ? / ?</p>
+					</div>
+				</div>
+				<div class="projekterne næsteProject">
+					<h2 class="gridLeft">Upcoming project</h2>
+					<div class="gridRight">
+						<p>????</p>
+						<p>? / ? / ?</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<footer>
+			<p id="contact-information">
+				Contact me
+				<span class="tooltiptext">Dosen't work yet, I might have forgotten to go back to it, please contact me about it... ohhhh</span>
+			</p>
+		</footer>
+	</body>
+</html>

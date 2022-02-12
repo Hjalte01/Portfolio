@@ -1,0 +1,657 @@
+* {
+	margin: 0;
+	padding: 0;
+	outline: none;
+	box-sizing: border-box;
+	font-size: calc(0.8vh + 0.8vw);
+	--black-clr: 0, 0, 0;
+	--white-clr: 255, 255, 255;
+	--menu-pseudo: 1;
+	scroll-behavior: smooth;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	background: rgba(var(--black-clr), 0.5);
+}
+
+#forside {
+	height: 100vh;
+	width: 100%;
+}
+
+/* Fik billedet på https://picsum.photos/4000/4000 */
+#forsideImg {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	background-image: url('Img/ForsideImg.JPG');
+	background-size: cover;
+	background-position: center;
+	opacity: 0.8;
+	z-index: -1;
+}
+
+#forside h1 {
+	position: absolute;
+	font-size: 4rem;
+	color: rgb(var(--white-clr));
+	-webkit-text-stroke: 0.1rem rgb(var(--black-clr));
+	left: 0;
+	right: 0;
+	text-align: center;
+	top: 21.5vh;
+}
+
+#forside h1::after {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 0.04em;
+	background-color: rgb(var(--black-clr));
+	left: 0;
+	top: 0.95em;
+	z-index: -1;
+}
+
+.box[type='checkbox'] {
+	display: none;
+}
+
+#menu {
+	position: fixed;
+	width: 3.2rem;
+	height: 2.85rem;
+	right: 1rem;
+	top: 1rem;
+	border-radius: 0.4rem;
+	display: grid;
+	place-content: center;
+	z-index: 10;
+}
+#menu #hamburgerLook {
+	width: 2.2rem;
+	height: 0.45rem;
+	background: rgb(var(--black-clr));
+	opacity: 0.75;
+	border-radius: 999rem;
+}
+#menu #hamburgerLook::before,
+#menu #hamburgerLook::after {
+	content: '';
+	position: absolute;
+	width: 2.2rem;
+	height: 0.45rem;
+	background: rgb(var(--black-clr));
+	border-radius: 999rem;
+	transform: translateY(calc(0.7rem * var(--menu-pseudo)));
+	transform-origin: center right;
+}
+#menu #hamburgerLook::before {
+	--menu-pseudo: -1;
+	transform-origin: center left;
+}
+#menu-content {
+	width: 20rem;
+	height: 100vh;
+	background: rgba(var(--white-clr), 0.9);
+	position: fixed;
+	right: 0;
+	top: 0;
+	transform: translateX(100%);
+	z-index: 9;
+	backdrop-filter: blur(0.2rem);
+	opacity: 0.1;
+	transition: opacity 3s;
+}
+
+#menu-content #menuTitel {
+	position: relative;
+	display: inline-block;
+	font-size: 3rem;
+	font-weight: bold;
+	margin: 0.5rem 0.5rem 2rem 0.5rem;
+}
+#menu-content #menuTitel::after {
+	content: '';
+	position: absolute;
+	width: 19.5rem;
+	height: 0.2rem;
+	top: 4rem;
+	left: 0;
+	background: black;
+}
+
+#menu-content #menu-grid {
+	display: grid;
+}
+
+#menu-content a {
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+	color: rgba(var(--black-clr), 0.8);
+	font-weight: 550;
+	padding: 0.5rem;
+}
+
+#menu-content a div {
+	position: relative;
+	display: inline-block;
+	font-size: 1.5rem;
+}
+
+#menu-content a .arrow {
+	position: absolute;
+	top: -0.1em;
+	right: -0.7em;
+	visibility: hidden;
+}
+#menu-content a .arrow::before {
+	content: '';
+	position: absolute;
+	top: 0.2em;
+	left: 0;
+	width: 2.4em;
+	height: 1.1em;
+	background: rgb(var(--black-clr));
+	background: linear-gradient(to right, rgba(var(--black-clr), 0.2), rgb(var(--black-clr)) 15%);
+	z-index: 1;
+}
+#menu-content a .arrow .arrow-back {
+	position: absolute;
+	width: 1.6em;
+	height: 0.4em;
+	background: rgba(var(--white-clr), 0.7);
+	top: 0.55em;
+}
+
+#menu-content a .arrow .arrow-head {
+	position: absolute;
+	border-top: 0.55em solid transparent;
+	border-bottom: 0.55em solid transparent;
+	border-left: 0.8em solid rgba(var(--white-clr), 0.7);
+	top: 0.2em;
+	left: 1.6em;
+}
+#menu-content a:hover .arrow,
+#menu-content a:focus-visible .arrow {
+	visibility: visible;
+}
+#menu-content a:hover .arrow::before,
+#menu-content a:focus-visible .arrow::before {
+	transition: transform 1.5s ease-out;
+	transform: translateX(100%);
+}
+
+#menu-content a:hover div,
+#menu-content a:focus-visible div {
+	color: rgb(var(--white-clr));
+}
+#menu-content a:hover,
+#menu-content a:focus-visible {
+	background: rgb(var(--black-clr));
+}
+
+#menu-content a:focus-visible div::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	width: 20rem;
+	height: 100%;
+	background: rgb(var(--black-clr));
+}
+
+#box1[type='checkbox']:checked ~ #menu-content {
+	transform: translateX(0);
+	transition: transform 1.5s ease-in-out;
+}
+#box1[type='checkbox']:checked ~ #menu-content a {
+	display: block;
+}
+#box1:checked ~ #menu-content:hover,
+#box1:checked ~ #menu-content:focus-within,
+#box1:checked + #menu:hover ~ #menu-content,
+#box1:checked + #menu:focus ~ #menu-content {
+	opacity: 1;
+}
+#menu:hover,
+#menu:focus-visible {
+	background: rgb(var(--black-clr), 0.2);
+	cursor: pointer;
+}
+#box1:checked + #menu #hamburgerLook {
+	animation: menuAnim 3s linear forwards 0.7s;
+}
+#box1:checked + #menu #hamburgerLook::before,
+#box1:checked + #menu #hamburgerLook::after {
+	animation: menuPseudoAnim 3s linear forwards 0.7s;
+}
+
+@keyframes menuAnim {
+	60% {
+		transform: rotate(0);
+	}
+	70% {
+		transform: rotate(calc(90deg));
+	}
+	100% {
+		transform: rotate(calc(45deg + 90deg));
+	}
+}
+@keyframes menuPseudoAnim {
+	20% {
+		transform: rotate(90deg) translate(calc(1.1rem * var(--menu-pseudo)), calc(0.5rem * var(--menu-pseudo)));
+	}
+	35% {
+		transform: rotate(90deg) translate(calc(1.1rem * var(--menu-pseudo)), calc(0.5rem * var(--menu-pseudo)));
+	}
+	36% {
+		transform: rotate(90deg) translate(calc(1.1rem * var(--menu-pseudo)), calc(0.45rem * var(--menu-pseudo)));
+	}
+	38% {
+		transform: rotate(90deg) translate(calc(1.1rem * var(--menu-pseudo)), calc(0.55rem * var(--menu-pseudo)));
+	}
+	40% {
+		transform: rotate(90deg) translate(calc(1.1rem * var(--menu-pseudo)), calc(0.45rem * var(--menu-pseudo)));
+	}
+	42% {
+		transform: rotate(90deg) translate(calc(1.1rem * var(--menu-pseudo)), calc(0.55rem * var(--menu-pseudo)));
+	}
+	44% {
+		transform: rotate(90deg) translate(calc(1.1rem * var(--menu-pseudo)), calc(0.45rem * var(--menu-pseudo)));
+	}
+	46% {
+		transform: rotate(90deg) translate(calc(1.1rem * var(--menu-pseudo)), calc(0.55rem * var(--menu-pseudo)));
+	}
+	48% {
+		transform: rotate(90deg) translate(calc(1.1rem * var(--menu-pseudo)), calc(0.45rem * var(--menu-pseudo)));
+	}
+
+	65% {
+		transform: rotate(90deg) translate(calc(1.1rem * var(--menu-pseudo)), calc(1.1rem * var(--menu-pseudo)));
+	}
+	100% {
+		transform: rotate(90deg) translate(calc(1.1rem * var(--menu-pseudo)), calc(1.1rem * var(--menu-pseudo)));
+	}
+}
+
+#container {
+	width: 100%;
+	height: 100%;
+	padding: 7rem 1rem 6rem 1rem;
+	background: rgba(var(--white-clr), 0.8);
+}
+
+#profileContainer {
+	height: 20rem;
+	display: grid;
+	grid-template-columns: 30% 60%;
+	gap: 10%;
+	padding-bottom: 12rem;
+	box-sizing: content-box;
+}
+
+.profile {
+	width: 100%;
+	height: 100%;
+	background-image: url('Img/Billede.JPG');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	border: 0.5rem solid black;
+	box-shadow: -0.25rem 0.25rem 2rem -0.5rem rgb(var(--black-clr));
+}
+
+.profileChild.informationer {
+	display: grid;
+	grid-template-rows: 5rem;
+	box-shadow: 0.5rem 0.5rem 2rem -0.5rem rgb(var(--black-clr));
+}
+.profileChild .description {
+	margin: 0 1rem 1rem 1rem;
+}
+
+.profileChild .description p {
+	color: rgb(var(--black-clr));
+	font-size: 1.2rem;
+	line-height: 1.4rem;
+}
+
+.profileChild .titel {
+	margin: auto;
+}
+
+.profileChild .titel h2 {
+	color: rgb(var(--black-clr));
+	font-size: 2.5rem;
+	font-weight: bold;
+}
+
+#projekterTitelContainer {
+	display: flex;
+	align-items: center;
+}
+
+#filter {
+	display: inline-grid;
+	place-items: center;
+	height: 2.5rem;
+	width: 2.5rem;
+	font-size: 2rem;
+	margin-left: auto;
+	position: relative;
+	cursor: pointer;
+	border-radius: 0.4rem;
+	float: right;
+}
+#filter::before {
+	content: '';
+	position: absolute;
+	width: 0.1em;
+	height: 0.9em;
+	left: calc((100% - 0.7em) / 2);
+	background: rgb(var(--black-clr));
+	box-shadow: 0.2em 0 0 rgb(var(--black-clr)), 0.4em 0 0 rgb(var(--black-clr)), 0.6em 0 0 rgb(var(--black-clr));
+}
+#filter::after {
+	content: '';
+	position: absolute;
+	margin: auto;
+	width: 0.9em;
+	height: 0.1em;
+	top: calc((100% - 0.7em) / 2);
+	background: rgb(var(--black-clr));
+	box-shadow: 0 0.2em 0 rgb(var(--black-clr)), 0 0.4em 0 rgb(var(--black-clr)), 0 0.6em 0 rgb(var(--black-clr));
+}
+
+#filter:hover,
+#filter:focus-visible {
+	background: rgb(var(--black-clr), 0.2);
+}
+#filterContainer {
+	width: 100%;
+	height: 12rem;
+	position: relative;
+	background: rgba(var(--black-clr), 0.8);
+	padding: 1rem 1rem 0.3rem 1rem;
+	margin-bottom: 0.5rem;
+	border-radius: 1rem;
+	display: none;
+	grid-template-rows: 2rem auto 3rem;
+	grid-column: auto;
+}
+#box2[type='checkbox']:checked ~ #filterContainer {
+	display: grid;
+}
+
+#filterContainer > h2 {
+	font-weight: bold;
+	font-size: 2rem;
+	color: rgb(var(--white-clr));
+	padding-bottom: 0.5rem;
+	text-align: center;
+	display: block;
+	margin: 0 auto;
+}
+#filterContainer p {
+	position: relative;
+	font-weight: bold;
+	font-size: 1.2rem;
+	color: rgba(var(--white-clr), 0.5);
+	margin: 1.2rem;
+	display: inline-block;
+}
+#filterContainer #selection p:hover,
+#filterContainer #selection p:focus-visible {
+	transform: scale(1.2);
+}
+#filterContainer p::before {
+	content: '';
+	position: absolute;
+	bottom: 20%;
+	transform: translateX(-125%);
+	width: 0.7em;
+	height: 0.7em;
+	background: var(--filter-clr);
+}
+#filterContainer #selection p:hover .tooltiptext {
+	visibility: visible;
+}
+#filterContainer #selection > p {
+	cursor: pointer;
+}
+
+.filterPOff {
+	--filter-clr: red;
+}
+#filterContainer > section {
+	margin: auto 0;
+	border-top: 0.1rem solid rgb(var(--black-clr));
+	height: 100%;
+	display: flex;
+}
+#filterContainer section * {
+	padding: 0 1rem;
+	margin: auto 0;
+	display: flex;
+}
+#filterContainer section p:first-child::before {
+	background: green;
+	bottom: 0.3rem;
+}
+#filterContainer section p:nth-child(2)::before {
+	background: red;
+	bottom: 0.3rem;
+}
+#filterContainer section input:first-of-type {
+	margin-left: auto;
+}
+
+#filterContainer section input:nth-of-type(2) {
+	margin-left: 0.75rem;
+}
+#filterContainer section input {
+	height: 0.8rem;
+	width: 0.8rem;
+	cursor: pointer;
+}
+#filterContainer section label {
+	font-weight: bold;
+	font-size: 1.2rem;
+	color: rgba(var(--white-clr), 0.5);
+	margin-right: 0.75rem;
+	padding: 0;
+	cursor: pointer;
+}
+#filterContainer section label:last-of-type {
+	margin-right: 0;
+}
+
+#projektLabel {
+	color: rgb(var(--black-clr));
+	font-size: 2.5rem;
+	font-weight: bold;
+	margin-left: 0.1rem;
+}
+
+#projekter {
+	width: 100%;
+	height: 100%;
+	box-shadow: 0.5rem 0.5rem 2rem -0.5rem rgb(var(--black-clr));
+	margin: 1rem 0;
+}
+
+.projekterne {
+	color: rgb(var(--black-clr));
+	display: grid;
+	grid-template-columns: 30% 70%;
+	grid-template-rows: minmax(10rem, auto);
+	position: relative;
+}
+.projekterne:hover > :not(.projekterLinks),
+.projekterne:focus-within > :not(.projekterLinks) {
+	opacity: 0.5;
+	filter: blur(0.15rem);
+}
+
+.projekterne:hover .projekterLinks,
+.projekterne:focus-within .projekterLinks {
+	opacity: 1;
+	transition: opacity 1s ease-in-out;
+}
+
+.projekterLinks {
+	opacity: 0;
+	display: grid;
+	place-content: center;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+}
+
+.projekterLinks > div {
+	display: flex;
+}
+.projekterLinks > div a {
+	font-size: 1.5rem;
+	border-radius: 0.9rem;
+	border: 0.3rem solid black;
+	padding: 0.5rem;
+	text-decoration: none;
+	color: rgb(var(--black-clr));
+	background: gray;
+	display: block;
+	transition: transform 0.5s ease-in-out;
+}
+
+.projekterLinks > div a:not(:nth-last-of-type(1)) {
+	margin-right: 1rem;
+}
+
+.projekterLinks > div a:focus-visible,
+.projekterLinks > div a:hover {
+	opacity: 0.4;
+	transform: scale(1.15);
+}
+
+.projekterne .gridLeft,
+.projekterne .gridRight {
+	border-color: rgba(var(--black-clr), 0.5);
+	border-style: solid;
+}
+
+/* borders for "Projekter jeg har lavet" */
+.projekterne:nth-of-type(1) .gridLeft {
+	border-width: 0.3rem 0.15rem 0.15rem 0.3rem;
+}
+.projekterne:nth-of-type(1) .gridRight {
+	border-width: 0.3rem 0.3rem 0.15rem 0.15rem;
+}
+.projekterne:nth-of-type(n + 2) .gridLeft {
+	border-width: 0.15rem 0.15rem 0.15rem 0.3rem;
+}
+.projekterne:nth-of-type(n + 2) .gridRight {
+	border-width: 0.15rem 0.3rem 0.15rem 0.15rem;
+}
+.projekterne:nth-last-of-type(1) .gridLeft {
+	border-width: 0.15rem 0.15rem 0.3rem 0.3rem;
+}
+.projekterne:nth-last-of-type(1) .gridRight {
+	border-width: 0.15rem 0.3rem 0.3rem 0.15rem;
+}
+
+.projekterne h2 {
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.gridLeft {
+	display: grid;
+	place-content: center;
+	padding: 1rem;
+	text-align: center;
+}
+.gridRight {
+	display: grid;
+	grid-template-rows: auto 2.5rem;
+	position: relative;
+	padding: 0.5rem 0.5rem 0 0.5rem;
+}
+
+.gridRight p {
+	font-size: 1.15rem;
+}
+
+.gridRight p:last-child {
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	margin-top: 1rem;
+}
+.gridRight p:last-child::before {
+	content: '';
+	position: absolute;
+	width: calc(100%);
+	height: 0.2em;
+	left: 0;
+	bottom: 1.2em;
+	background: rgba(var(--black-clr), 0.5);
+	transform: translateY(-50%);
+}
+
+footer {
+	height: 5rem;
+	width: 100%;
+	background: rgb(var(--black-clr));
+	display: grid;
+	place-content: center;
+}
+
+#contact-information {
+	color: rgb(var(--white-clr));
+	position: relative;
+}
+
+.tooltiptext {
+	width: max-content;
+	max-width: 50vw;
+	height: auto;
+	background: #585858;
+	color: rgb(var(--white-clr));
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, calc(-100% - 3.8ex));
+	display: grid;
+	place-items: center;
+	border-radius: 0.3rem;
+	visibility: hidden;
+	padding: 0.6em;
+	z-index: 999;
+	cursor: text;
+}
+.tooltiptext::before {
+	content: '';
+	position: absolute;
+	border-top: 0.4em solid #585858;
+	border-left: 0.4em solid transparent;
+	border-right: 0.4em solid transparent;
+	bottom: -0.3em;
+	z-index: 998;
+}
+
+#contact-information:hover .tooltiptext {
+	visibility: visible;
+}
+
+/* This is going to be the options without hovering assesable to the device */
+/* currently only projects should have it -- Delete line when solved -- */
+@media (hover: none), (pointer: coarse), (pointer: none) {
+	* {
+	}
+}
